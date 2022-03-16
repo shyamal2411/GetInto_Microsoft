@@ -6,6 +6,10 @@ using namespace std;
 class Solution {
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+   
+// Time: O(n)
+// Space:O(n)
+
        int i=0, j=0;
         stack<int> s;
         for(i = 0; i < pushed.size(); i++){
@@ -16,7 +20,20 @@ public:
         }
         return s.empty();
     }
+    bool validateStackSequences2(vector<int>& push, vector<int>& pop){
+// Time: O(n)
+// Space:O(1)
+        int i = 0, j = 0;
+        for(auto x: push){
+            push[i++] = x;
+            while(i > 0 && push[i-1] == pop[j]){
+                i--; j++;
+            }
+        }
+        return i == 0;
+    }
 };
+
 
 
 int main(){
