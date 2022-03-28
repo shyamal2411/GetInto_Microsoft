@@ -1,0 +1,28 @@
+#include<bits/stdc++.h> 
+using namespace std;
+
+// https://leetcode.com/problems/check-if-it-is-a-straight-line/
+class Solution {
+public:
+ 
+ bool checkStraightLine(vector<vector<int>>& coordinates) {
+        int dy,dx,ndy,ndx,i;
+        dy=coordinates[1][1] - coordinates[0][1];
+        dx=coordinates[1][0] - coordinates[0][0];
+            for(i=2;i<coordinates.size();i++)
+            {
+                ndy=coordinates[i][1] - coordinates[0][1];  // new dy
+                ndx=coordinates[i][0] - coordinates[0][0];  // new dx
+                if(ndx * dy != ndy * dx)
+                    return false;
+            }
+        return true;
+    }
+};
+
+int main(){
+    Solution ss;
+    vector<vector<int>> coordinates = {{1,2},{2,3},{3,4},{4,5},{5,6},{6,7}};
+    cout<<ss.checkStraightLine(coordinates)<<endl;
+    return 0;
+}
