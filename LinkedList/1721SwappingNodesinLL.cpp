@@ -13,21 +13,42 @@ ListNode(int x, ListNode *next) : val(x), next(next) {}
 class Solution {
 public:
     ListNode* swapNodes(ListNode* head, int k) {
-        ListNode *kthNode = NULL, *kthNodeFromEnd = NULL, *iter = head;
+        ListNode *kthNode = NULL, *kthNodeFromEnd = NULL, *temp = head;
 	int len = 0, idx = 0;
-	while(iter)
-		iter = iter -> next, len++;
-	iter = head;
-	while(iter){
-		if(idx == k - 1) kthNode = iter;
-		if(idx == len - k) kthNodeFromEnd = iter;
+	while(temp)
+		temp = temp -> next, len++;
+	temp = head;
+	while(temp){
+		if(idx == k - 1) kthNode = temp;
+		if(idx == len - k) kthNodeFromEnd = temp;
 		if(kthNode && kthNodeFromEnd) break;
-		iter = iter -> next, idx++;
+		temp = temp -> next, idx++;
 	}   
 	swap(kthNode -> val, kthNodeFromEnd -> val);
 	return head;
     }
+
+    
+    ListNode* swapNodes(ListNode* head, int k){
+        if(head == 0) return head;
+        ListNode* front = head;
+        ListNode* back = head;
+        ListNode* curr = head;
+
+        while(k > 1){
+            curr = curr -> next;
+            back = back -> next;
+        }
+        while(curr -> next){
+            curr = curr -> next;
+            front = front -> next;
+        }
+        swap(front -> val, back -> val);
+        return head;
+    }
 };
+
+
 
 void printlist(ListNode* node){
     while(node){
