@@ -34,4 +34,9 @@ int main(){
     Solution ss;
     vector<int> nums = {1,1,2};
     vector<vector<int>> ans;
+    ans = ss.permuteUnique(nums);
+    for(auto &v: ans){
+        for(auto &i: v) cout << i << " ";
+        cout << endl;
+    }
 }
